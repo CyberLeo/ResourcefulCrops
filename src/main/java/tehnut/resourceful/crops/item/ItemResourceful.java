@@ -84,9 +84,12 @@ public class ItemResourceful extends Item {
     }
 
     public static ItemStack getResourcefulStack(SeedStack seedStack) {
+        String registryName = "invalid";
+        if (seedStack.getSeed() != null)
+          registryName = seedStack.getSeed().getRegistryName().toString();
         ItemStack stack = new ItemStack(seedStack.getType(), seedStack.getAmount(), 0);
         stack.setTagCompound(new NBTTagCompound());
-        stack.getTagCompound().setString("seed", seedStack.getSeed().getRegistryName().toString());
+        stack.getTagCompound().setString("seed", registryName);
         return stack;
     }
 }
